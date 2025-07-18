@@ -1,0 +1,30 @@
+.tableContainer{
+    width: 90vw;
+    overflow-x: auto;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.tableStyle{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tableStyle thead{
+    background-color: #f2f2f2;
+}
+
+.tableStyle th{
+    text-align: left;
+    color: #333;
+}
+
+.tableStyle tbody{
+    background-color: #fff;
+}
+
+.tableStyle th,
+.tableStyle td{
+    border: 1px solid black;
+    padding: 1rem;
+}

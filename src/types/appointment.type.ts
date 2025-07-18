@@ -1,4 +1,5 @@
 export type Appointment = {
+    id?:                  string;
     name:                string;
     lastname:            string;
     specialtyField:      string;
