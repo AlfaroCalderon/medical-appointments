@@ -1,18 +1,20 @@
 import { ChangeEvent, FormEvent, useState } from "react"
-import styles from './appointment.module.css';
-import { useMutation } from "@tanstack/react-query";
+import styles from './appointmentForm.module.css';
+import { useMutation} from "@tanstack/react-query";
 import { insertAppointment } from "@/services/appointment.service";
 
-export const Appointment = () => {
+export const AppointmentForm = () => {
 
+    //We use the useState to capture the data of each of the inputs and selects inside the form 
     const [name, setName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [specialtyField, setSpecialtyField] = useState<string>(''); 
-    const [priority, setPriority] = useState<number>(2);
+    const [priority, setPriority] = useState<number>(0);
     const [date, setDate] = useState<string>('');
     const [time, setTime] = useState<string>('');
     const [reason, setReason] = useState<string>('');
 
+    //Here we use the useMutation from tanstack to insert the data 
     const mutation = useMutation({
         mutationFn: insertAppointment,
     });
@@ -30,30 +32,35 @@ export const Appointment = () => {
         };
 
         mutation.mutate({ newAppointment });
-        console.log(newAppointment);
 
-        e.currentTarget.reset();
+        setName('');
+        setLastName('');
+        setSpecialtyField('');
+        setPriority(0);
+        setDate('');
+        setTime('');
+        setReason('');
     }
 
   return (
     <>
-    <div className={styles.formContainer}>
+    <div className={styles.Container}>
 
         
          {mutation.isSuccess?(
-                <div style={{ color: 'green', padding: '10px', marginBottom: '10px' }}>
+                <div className={styles.successAlert}>
                     ✅ Appointment created successfully!
                 </div>
          ): null}
 
          {mutation.isError?(
-                <div style={{ color: 'red', padding: '10px', marginBottom: '10px' }}>
+                <div className={styles.errorAlert}>
                     ❌ Error: {mutation.error?.message || 'Something went wrong'}
                 </div>
          ):null }
 
          {mutation.isPending?(
-                <div style={{ color: 'blue', padding: '10px', marginBottom: '10px' }}>
+                <div className={styles.loadingAlert}>
                     ⏳ Saving appointment...
                 </div>
          ):null}

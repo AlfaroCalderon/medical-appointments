@@ -19,3 +19,15 @@ export const insertAppointment = async (props: { newAppointment: Appointment }) 
         throw new Error('An error has arisen: ' + error)
     }
 }
+
+
+
+export const getAppointment = async (): Promise<Appointment[] | never> => {
+    try {
+        const response = await medicalAppointment.get('/medical_appointments');
+        return response.data;
+        
+    } catch (error) {
+        throw new Error('An error has arisen: ' + error);
+    }
+}
