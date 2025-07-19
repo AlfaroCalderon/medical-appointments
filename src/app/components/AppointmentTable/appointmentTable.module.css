@@ -1,10 +1,62 @@
+
+/*Container styles -----------------------------------------------*/
+
 .tableContainer{
     width: 90vw;
     overflow-x: auto;
-    margin: auto;
-    margin-top: 20px;
+    margin: 2rem auto;
+    padding: 0.5rem;
 }
 
+
+/*Alerts styles -----------------------------------------------*/
+.successAlert{
+    color: green;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: #e6ffed;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    animation: fadeOut 3s ease-in-out forwards; /*This is the keyframe we created below*/
+    z-index: 99;
+    position: absolute;
+}
+
+.errorAlert{
+    color: red;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    animation: fadeOut 3s ease-in-out forwards; /*This is the keyframe we created below*/
+    z-index: 99;
+    position: absolute;
+}
+
+.loadingAlert{
+    color: rgb(53, 53, 148);
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: #d1ecf1;
+    border: 1px solid #bee5eb;
+    border-radius: 5px;
+    z-index: 99;
+    position: absolute;
+}
+
+/*To make disappear the alert after a while*/
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+/*table styles ---------------------------------------------------------*/
 .tableStyle{
     width: 100%;
     border-collapse: collapse;
@@ -28,3 +80,5 @@
     border: 1px solid black;
     padding: 1rem;
 }
+
+

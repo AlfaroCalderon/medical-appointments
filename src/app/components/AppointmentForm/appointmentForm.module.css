@@ -17,6 +17,8 @@
     border: 1px solid #c3e6cb;
     border-radius: 5px;
     animation: fadeOut 3s ease-in-out forwards; /*This is the keyframe we created below*/
+    z-index: 100;
+    position: absolute;
 }
 
 .errorAlert{
@@ -27,6 +29,8 @@
     border: 1px solid #f5c6cb;
     border-radius: 5px;
     animation: fadeOut 3s ease-in-out forwards; /*This is the keyframe we created below*/
+    z-index: 100;
+    position: absolute;
 }
 
 .loadingAlert{
@@ -36,6 +40,19 @@
     background-color: #d1ecf1;
     border: 1px solid #bee5eb;
     border-radius: 5px;
+    z-index: 100;
+    position: absolute;
+}
+
+.validationError{
+    color: red;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    z-index: 100;
+    position: absolute;
 }
 
 /*To make disappear the alert after a while*/

@@ -13,15 +13,24 @@ export const AppointmentForm = () => {
     const [date, setDate] = useState<string>('');
     const [time, setTime] = useState<string>('');
     const [reason, setReason] = useState<string>('');
+    const [showValidationError, setShowValidationError] = useState<boolean>(false);
 
     //Here we use the useMutation from tanstack to insert the data 
     const mutation = useMutation({
         mutationFn: insertAppointment,
     });
 
+    // This function validates if the data introduced in the form is correct, if not it shows an error message
     const handleForm = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        // Main validations of the form 
+        if (!name.trim() || !lastName.trim() || !specialtyField || !priority || !date || !time || !reason.trim()) {
+            setShowValidationError(true);
+            return;
+        }
+
+        //If the validatios are correct, we create the object to send it to the backend
         const newAppointment = {
             name: name,
             lastname: lastName,
@@ -31,8 +40,10 @@ export const AppointmentForm = () => {
             reason
         };
 
+        //Here with mutation we send the data XD
         mutation.mutate({ newAppointment });
 
+        //We reset the form and the form validation alert 
         setName('');
         setLastName('');
         setSpecialtyField('');
@@ -40,36 +51,41 @@ export const AppointmentForm = () => {
         setDate('');
         setTime('');
         setReason('');
+        setShowValidationError(false);
     }
 
   return (
     <>
-    <div className={styles.Container}>
-
-        
-         {mutation.isSuccess?(
+      {/* Here we show the alerts depending on the status of the mutation and the validation alert of the form*/}
+        {mutation.isSuccess && (
                 <div className={styles.successAlert}>
                     ✅ Appointment created successfully!
                 </div>
-         ): null}
+         )}
 
-         {mutation.isError?(
+         {mutation.isError &&(
                 <div className={styles.errorAlert}>
                     ❌ Error: {mutation.error?.message || 'Something went wrong'}
                 </div>
-         ):null }
+         )}
 
-         {mutation.isPending?(
+         {showValidationError && (
+                <div className={styles.validationError}>
+                    ❌ Please fill in all fields correctly.
+                </div>
+         )}
+
+         {mutation.isPending &&(
                 <div className={styles.loadingAlert}>
                     ⏳ Saving appointment...
                 </div>
-         ):null}
-    
-
-        <form action="#" className={styles.formStyle} onSubmit={handleForm}>
+         )}
+    {/* Here we reeturn the form */}
+    <div className={styles.Container}>
+        <form action="#" className={styles.formStyle} onSubmit={handleForm}>{/* The funtion to validate the form and send the data */}
                 <div className={styles.formGroup}>
                 <label htmlFor="name">Name:</label>
-                <input type="text" name="name" id="name" placeholder="Please enter your name" onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)} value={name} />
+                <input type="text" name="name" id="name" placeholder="Please enter your name" onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)} value={name} />{/*In each of the inputs and selects a onChange event to get the value and set it in the useStates we've got above*/}
                 </div>
                 <div className={styles.formGroup}>
                 <label htmlFor="lastname">Lastname:</label>
