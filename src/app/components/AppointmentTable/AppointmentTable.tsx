@@ -58,7 +58,7 @@ return (
                                     <td>{appointment.lastname}</td>
                                     <td>{appointment.specialtyField}</td>
                                     <td>{priority(appointment.priority)}</td>
-                                    <td>{appointment.appointmentDateHour.replace('T', ' ')}</td> {/* Replacing 'T' with inside the date and hour xd */}
+                                    <td>{appointment.appointmentDateHour.replace('T', ' ')}</td> 
                                     <td>{appointment.reason}</td>
                                 </tr>
                             ))
