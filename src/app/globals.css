@@ -5,6 +5,10 @@
 }
 
 body{
-  background-color: #f0f2f5;
-  color: #333;
+  background-image: url('https://res.cloudinary.com/dxuntrrfo/image/upload/v1753107056/pexels-simon73-1323550_cmpow9.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+  color: #333; 
 }
